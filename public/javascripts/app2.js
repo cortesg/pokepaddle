@@ -67,11 +67,11 @@ function create() {
 
 
     textStyle = { font: '18px Arial', fill: '#0095DD' };
-    startText = game.add.text(game.world.width*0.14, game.world.height*0.6, 'Lets be a Pokemon master, press up to start', { font: '18px Arial', fill: '#0095DD' });
+    startText = game.add.text(game.world.width*0.14, game.world.height*0.6, 'Lets be a Pokemon master, press up to start', { font: '18px Arial', fill: 'yellow' });
     scoreText = game.add.text(5, 5, 'Your Pokemon: 0', { font: '18px Arial', fill: '#0095DD' });
     livesText = game.add.text(game.world.width-5, 5, 'Pokeballs: '+lives, { font: '18px Arial', fill: '#0095DD' });
     livesText.anchor.set(1,0);
-    lifeLostText = game.add.text(game.world.width*0.5, game.world.height*0.6, 'Pokeball lost, press up to continue', { font: '18px Arial', fill: '#0095DD' });
+    lifeLostText = game.add.text(game.world.width*0.5, game.world.height*0.6, 'Pokeball lost, press up to continue', { font: '18px Arial', fill: 'yellow' });
     lifeLostText.anchor.set(0.5);
     lifeLostText.visible = false;
 }
