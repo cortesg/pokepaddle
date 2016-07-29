@@ -1,5 +1,7 @@
 #My First Video Game
 
+## ruby game.rb to start game
+
 <br>
 
 ##Phaser JS
