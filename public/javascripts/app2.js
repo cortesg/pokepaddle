@@ -13,13 +13,13 @@ var lives = 3;
 var livesText;
 var lifeLostText;
 
-function preload() {
-    
+function preload() {    
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.pageAlignHorizontally = true;
     game.scale.pageAlignVertically = true;
     game.stage.backgroundColor = '#eee';
 
+    game.load.image('background', '../images/kanto.jpeg');
     game.load.image('ball', '../images/pokeball2.png', 50, 50);
     game.load.image('paddle', '../images/platform.png')
     game.load.image('brick', '../images/pikachu.png');
@@ -30,6 +30,10 @@ function preload() {
 }
 function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE);
+    var background = game.add.image(0, 0, 'background');
+    background.scale.x = game.rnd.realInRange(1.94, 1.94);
+    background.scale.y = game.rnd.realInRange(1.6, 1.6);
+
 	game.physics.arcade.checkCollision.down = false;
     ball = game.add.sprite(game.world.width*0.5, game.world.height-55, 'ball');
     // ball = game.add.sprite(50, 250, 'ball');
@@ -54,20 +58,20 @@ function create() {
 	   
 
     cursors = game.input.keyboard.createCursorKeys();
-    // this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     initBricks();
 
-    game.input.onDown.add(startGame, this);
+    cursors.up.onDown.add(startGame, this);
  //    startButton = game.add.button(game.world.width*0.5, game.world.height*0.5, 'rock', startGame, this, 1, 0, 2);
 	// startButton.anchor.set(0.5);
 
 
     textStyle = { font: '18px Arial', fill: '#0095DD' };
-    startText = game.add.text(game.world.width*0.18, game.world.height*0.6, 'Lets be a Pokemon master, click to start', { font: '18px Arial', fill: '#0095DD' });
+    startText = game.add.text(game.world.width*0.14, game.world.height*0.6, 'Lets be a Pokemon master, press up to start', { font: '18px Arial', fill: '#0095DD' });
     scoreText = game.add.text(5, 5, 'Your Pokemon: 0', { font: '18px Arial', fill: '#0095DD' });
     livesText = game.add.text(game.world.width-5, 5, 'Pokeballs: '+lives, { font: '18px Arial', fill: '#0095DD' });
     livesText.anchor.set(1,0);
-    lifeLostText = game.add.text(game.world.width*0.5, game.world.height*0.6, 'Pokeball lost, click to continue', { font: '18px Arial', fill: '#0095DD' });
+    lifeLostText = game.add.text(game.world.width*0.5, game.world.height*0.6, 'Pokeball lost, press up to continue', { font: '18px Arial', fill: '#0095DD' });
     lifeLostText.anchor.set(0.5);
     lifeLostText.visible = false;
 }
@@ -147,7 +151,7 @@ function startGame() {
         //     ball.body.velocity.set(400, -400);
         // }, this);
     startText.visible = true;
-    game.input.onDown.addOnce(function(){
+    cursors.up.onDown.addOnce(function(){
     startText.visible = false;
     ball.body.velocity.set(400, -400);
     playing = true;
@@ -163,7 +167,7 @@ function ballLeaveScreen() {
         lifeLostText.visible = true;
         ball.reset(game.world.width*0.5, game.world.height-55);
         paddle.reset(game.world.width*0.5, game.world.height-5);
-        game.input.onDown.addOnce(function(){
+        cursors.up.onDown.addOnce(function(){
             playing=true;
             lifeLostText.visible = false;
             ball.body.velocity.set(400, -400);
