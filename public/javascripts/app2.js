@@ -17,8 +17,9 @@ function preload() {
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.pageAlignHorizontally = true;
     game.scale.pageAlignVertically = true;
-    game.stage.backgroundColor = '#eee';
+    // game.stage.backgroundColor = '#eee';
 
+    //LOADING IMAGES
     game.load.image('background', '../images/kanto.jpeg');
     game.load.image('ball', '../images/pokeball2.png', 50, 50);
     game.load.image('paddle', '../images/platform.png')
@@ -29,47 +30,49 @@ function preload() {
 
 }
 function create() {
+    //ADDING BASIC MOVEMENT
 	game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    //BACKGROUND IMAGING
     var background = game.add.image(0, 0, 'background');
     background.scale.x = game.rnd.realInRange(1.94, 1.94);
     background.scale.y = game.rnd.realInRange(1.6, 1.6);
 
+    //NO SOUTH BOUNDARY
 	game.physics.arcade.checkCollision.down = false;
+
+    //ADDING BALL IMAGES
     ball = game.add.sprite(game.world.width*0.5, game.world.height-55, 'ball');
-    // ball = game.add.sprite(50, 250, 'ball');
+    ball2 = game.add.sprite(game.world.width*0.83, game.world.height-325, 'ball'); //'lives' counter
+
     // ball.animations.add('wobble', [0,1,0,2,0,1,0,2,0], 24);
     ball.anchor.set(0.5);
     game.physics.enable(ball, Phaser.Physics.ARCADE);   
     ball.body.velocity.set(0, 0);
     ball.body.collideWorldBounds = true;
-    ball.body.bounce.set(1);
-    ball.checkWorldBounds = true;
+    ball.body.bounce.set(1);  //1 = newtons 3rd law; >1 = momentum increases on impact; <1 = momentum decreases on impact
+    ball.checkWorldBounds = true; //set boundaries
     ball.events.onOutOfBounds.add(ballLeaveScreen, this);
 
-
-
-    paddle = game.add.sprite(game.world.width*0.5, game.world.height-5, 'paddle');
+    //ADDING PADDLE IMAGES
+    paddle = game.add.sprite(game.world.width*0.5, game.world.height-5, 'paddle'); //location setting for paddle
     paddle.anchor.set(0.5,1);
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
-    paddle.body.immovable = true;
-    // paddle.collideWorldBounds = true;
-    // paddle.body.bounce.set(1);
-    // paddle.checkWorldBounds = true;
+    paddle.body.immovable = true; //initialize no movement on start
 	   
-
+    //ALLOW USING COMPUTER KEYBOARD
     cursors = game.input.keyboard.createCursorKeys();
-    this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //adding spacebar
     initBricks();
 
-    cursors.up.onDown.add(startGame, this);
- //    startButton = game.add.button(game.world.width*0.5, game.world.height*0.5, 'rock', startGame, this, 1, 0, 2);
-	// startButton.anchor.set(0.5);
+    cursors.up.onDown.add(startGame, this); //start game by pressing up
 
-
+    //TEXT PROJECTION
     textStyle = { font: '18px Arial', fill: '#0095DD' };
     startText = game.add.text(game.world.width*0.06, game.world.height*0.6, 'Be a Pokemon master, press UP to throw the Pokeball', { font: '18px Arial', fill: 'yellow' });
     scoreText = game.add.text(5, 5, 'Your Pokemon: 0', { font: '18px Arial', fill: '#0095DD' });
-    livesText = game.add.text(game.world.width-5, 5, 'Pokeballs: '+lives, { font: '18px Arial', fill: '#0095DD' });
+    // livesText = game.add.text(game.world.width-5, 5, 'Pokeballs: '+lives, { font: '18px Arial', fill: '#0095DD' });
+    livesText = game.add.text(game.world.width-5, 5, ': '+lives, { font: '18px Arial', fill: '#0095DD' });
     livesText.anchor.set(1,0);
     lifeLostText = game.add.text(game.world.width*0.5, game.world.height*0.6, 'Pokeball lost, press UP to throw another Pokeball', { font: '18px Arial', fill: 'yellow' });
     lifeLostText.anchor.set(0.5);
@@ -77,7 +80,6 @@ function create() {
 }
 function update() {
 	game.physics.arcade.collide(ball, paddle, ballHitPaddle);
-	// paddle.x = game.input.x || game.world.width*0.5;
 	game.physics.arcade.collide(ball, bricks, ballHitBrick);
 	if(playing) {
 	    if(cursors.left.isDown){
@@ -138,18 +140,6 @@ function ballHitBrick(ball, brick) {
 }
 
 function startGame() {
-	// cursors = game.input.keyboard.createCursorKeys();
-	// if(cursors.left.isDown){
-    // game.input.onDown.addOnce(function(){
-    // startButton.destroy()
-        //     playing=false;
-        // ball.reset(game.world.width*0.5, game.world.height-55);
-        // paddle.reset(game.world.width*0.5, game.world.height-5);
-        // game.input.onDown.addOnce(function(){
-        //     playing=true;
-        //     lifeLostText.visible = false;
-        //     ball.body.velocity.set(400, -400);
-        // }, this);
     startText.visible = true;
     cursors.up.onDown.addOnce(function(){
     startText.visible = false;
@@ -161,9 +151,9 @@ function startGame() {
 function ballLeaveScreen() {
     lives--;
     if(lives) {
-        // paddle.body.velocity.set(0, 0);
         playing=false;
-        livesText.setText('Pokeball(s): '+lives);
+        // livesText.setText('Pokeball(s): '+lives);
+        livesText.setText(': '+lives);
         lifeLostText.visible = true;
         ball.reset(game.world.width*0.5, game.world.height-55);
         paddle.reset(game.world.width*0.5, game.world.height-5);
@@ -178,9 +168,3 @@ function ballLeaveScreen() {
         location.reload();
     }
 }
-
-// this function (needed only on JSFiddle) take care of loading the images from the remote server
-// function handleRemoteImagesOnJSFiddle() {
-// 	game.load.baseURL = 'https://end3r.github.io/Gamedev-Phaser-Content-Kit/demos/';
-// 	game.load.crossOrigin = 'anonymous';
-// }
