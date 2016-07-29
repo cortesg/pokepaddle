@@ -57,11 +57,13 @@ function create() {
     // this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     initBricks();
 
-    startButton = game.add.button(game.world.width*0.5, game.world.height*0.5, 'pokelogo', startGame, this, 1, 0, 2);
-	startButton.anchor.set(0.5);
+    game.input.onDown.add(startGame, this);
+ //    startButton = game.add.button(game.world.width*0.5, game.world.height*0.5, 'rock', startGame, this, 1, 0, 2);
+	// startButton.anchor.set(0.5);
 
 
     textStyle = { font: '18px Arial', fill: '#0095DD' };
+    startText = game.add.text(game.world.width*0.18, game.world.height*0.6, 'Lets be a Pokemon master, click to start', { font: '18px Arial', fill: '#0095DD' });
     scoreText = game.add.text(5, 5, 'Your Pokemon: 0', { font: '18px Arial', fill: '#0095DD' });
     livesText = game.add.text(game.world.width-5, 5, 'Pokeballs: '+lives, { font: '18px Arial', fill: '#0095DD' });
     livesText.anchor.set(1,0);
@@ -135,10 +137,21 @@ function startGame() {
 	// cursors = game.input.keyboard.createCursorKeys();
 	// if(cursors.left.isDown){
     // game.input.onDown.addOnce(function(){
-    startButton.destroy()
+    // startButton.destroy()
+        //     playing=false;
+        // ball.reset(game.world.width*0.5, game.world.height-55);
+        // paddle.reset(game.world.width*0.5, game.world.height-5);
+        // game.input.onDown.addOnce(function(){
+        //     playing=true;
+        //     lifeLostText.visible = false;
+        //     ball.body.velocity.set(400, -400);
+        // }, this);
+    startText.visible = true;
+    game.input.onDown.addOnce(function(){
+    startText.visible = false;
     ball.body.velocity.set(400, -400);
     playing = true;
-	// })
+	})
 }
 
 function ballLeaveScreen() {
