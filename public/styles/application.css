@@ -32,8 +32,9 @@
 
 .logo {
    margin-top: 555px;
-   margin-left: 320px;
-   width: 600px;
+   margin-left: 430px;
+   width: 475px;
+   /*height: auto;*/
 }
 
 body {
