@@ -21,7 +21,8 @@ function preload() {
 
     //LOADING IMAGES
     game.load.image('background', '../images/kanto.jpeg');
-    game.load.image('ball', '../images/pokeball2.png', 50, 50);
+    game.load.image('ball', '../images/pokeball3.png', 50, 50);
+    game.load.image('ball2', '../images/pokeballS.png', 40, 40);
     game.load.image('paddle', '../images/platform.png')
     game.load.image('brick', '../images/pikachu.png');
     game.load.image('button', '../images/rock.png');
@@ -43,7 +44,7 @@ function create() {
 
     //ADDING BALL IMAGES
     ball = game.add.sprite(game.world.width*0.5, game.world.height-55, 'ball');
-    ball2 = game.add.sprite(game.world.width*0.83, game.world.height-325, 'ball'); //'lives' counter
+    ball2 = game.add.sprite(game.world.width*0.85, game.world.height-317, 'ball2'); //'lives' counter
 
     // ball.animations.add('wobble', [0,1,0,2,0,1,0,2,0], 24);
     ball.anchor.set(0.5);
@@ -99,7 +100,7 @@ function initBricks() {
             col: 3
         },
         offset: {
-            top: 50,
+            top: 57,
             left: 30
         },
         padding: 19
@@ -160,7 +161,7 @@ function ballLeaveScreen() {
         cursors.up.onDown.addOnce(function(){
             playing=true;
             lifeLostText.visible = false;
-            ball.body.velocity.set(400, -400);
+            ball.body.velocity.set(350, -350);
         }, this);
     }
     else {
