@@ -21,7 +21,7 @@ function preload() {
 
     //LOADING IMAGES
     game.load.image('background', '../images/kanto.jpeg');
-    game.load.image('ball', '../images/pokeball3.png', 50, 50);
+    game.load.image('ball', '../images/pokeballS.png', 50, 50);
     game.load.image('ball2', '../images/pokeballS.png', 40, 40);
     game.load.image('paddle', '../images/platform.png')
     game.load.image('brick', '../images/pikachu.png');
@@ -51,7 +51,7 @@ function create() {
     game.physics.enable(ball, Phaser.Physics.ARCADE);   
     ball.body.velocity.set(0, 0);
     ball.body.collideWorldBounds = true;
-    ball.body.bounce.set(1);  //1 = newtons 3rd law; >1 = momentum increases on impact; <1 = momentum decreases on impact
+    ball.body.bounce.set(1.05);  //1 = newtons 3rd law; >1 = momentum increases on impact; <1 = momentum decreases on impact
     ball.checkWorldBounds = true; //set boundaries
     ball.events.onOutOfBounds.add(ballLeaveScreen, this);
 
@@ -59,6 +59,8 @@ function create() {
     paddle = game.add.sprite(game.world.width*0.5, game.world.height-5, 'paddle'); //location setting for paddle
     paddle.anchor.set(0.5,1);
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
+    paddle.body.collideWorldBounds = true;
+    paddle.checkWorldBounds = true;
     paddle.body.immovable = true; //initialize no movement on start
 	   
     //ALLOW USING COMPUTER KEYBOARD
@@ -84,9 +86,9 @@ function update() {
 	game.physics.arcade.collide(ball, bricks, ballHitBrick);
 	if(playing) {
 	    if(cursors.left.isDown){
-	        paddle.body.velocity.x = -600;
+	        paddle.body.velocity.x = -400;
 	    } else if(cursors.right.isDown){
-	    	paddle.body.velocity.x = 600;
+	    	paddle.body.velocity.x = 400;
 	    }
     }
 }
@@ -144,7 +146,7 @@ function startGame() {
     startText.visible = true;
     cursors.up.onDown.addOnce(function(){
     startText.visible = false;
-    ball.body.velocity.set(400, -400);
+    ball.body.velocity.set(200, -200);
     playing = true;
 	})
 }
@@ -161,7 +163,7 @@ function ballLeaveScreen() {
         cursors.up.onDown.addOnce(function(){
             playing=true;
             lifeLostText.visible = false;
-            ball.body.velocity.set(350, -350);
+            ball.body.velocity.set(200, -200);
         }, this);
     }
     else {
