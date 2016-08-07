@@ -24,7 +24,6 @@ function preload() {
     game.load.image('ball2', '../images/pokeballS.png', 40, 40);
     game.load.image('paddle', '../images/platform.png')
     game.load.image('brick', '../images/pikachu.png');
-    game.load.image('button', '../images/rock.png');
 }
 
 function create() {
@@ -43,7 +42,6 @@ function create() {
     ball = game.add.sprite(game.world.width*0.5, game.world.height-55, 'ball');
     ball2 = game.add.sprite(game.world.width*0.85, game.world.height-317, 'ball2'); //'lives' counter
 
-    // ball.animations.add('wobble', [0,1,0,2,0,1,0,2,0], 24);
     ball.anchor.set(0.5);
     game.physics.enable(ball, Phaser.Physics.ARCADE);   
     ball.body.velocity.set(0, 0);
@@ -62,8 +60,8 @@ function create() {
 	   
     //ALLOW USING COMPUTER KEYBOARD
     cursors = game.input.keyboard.createCursorKeys();
-    this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //adding spacebar
-    initBricks();
+    // this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //adding spacebar
+    initBricks(); //create the bricks
 
     cursors.up.onDown.add(startGame, this); //start game by pressing up
 
@@ -77,6 +75,7 @@ function create() {
     lifeLostText.anchor.set(0.5);
     lifeLostText.visible = false;
 }
+
 function update() {
 	game.physics.arcade.collide(ball, paddle, ballHitPaddle);
 	game.physics.arcade.collide(ball, bricks, ballHitBrick);
@@ -150,11 +149,9 @@ function startGame() {
 function ballLeaveScreen() {
     lives--;
     if(lives) {
-        // playing=false;
         livesText.setText(': '+lives);
         lifeLostText.visible = true;
         ball.reset(game.world.width*0.5, game.world.height-55);
-        // paddle.reset(game.world.width*0.5, game.world.height-5);
         cursors.up.onDown.addOnce(function(){
             playing=true;
             lifeLostText.visible = false;
