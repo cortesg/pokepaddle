@@ -57,12 +57,11 @@ function create() {
     paddle.body.collideWorldBounds = true;
     paddle.checkWorldBounds = true;
     paddle.body.immovable = true; //initialize no movement on start
-	   
-    //ALLOW USING COMPUTER KEYBOARD
-    cursors = game.input.keyboard.createCursorKeys();
-    // this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //adding spacebar
+	
     initBricks(); //create the bricks
 
+    //ALLOW USING COMPUTER KEYBOARD
+    cursors = game.input.keyboard.createCursorKeys();
     cursors.up.onDown.add(startGame, this); //start game by pressing up
 
     //TEXT PROJECTION
