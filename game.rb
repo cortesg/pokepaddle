@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'sinatra/reloader'
+# require 'sinatra/reloader'
 
 # configure(:development){set :database, "sqlite3:database.sqlite3"}
 
