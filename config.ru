@@ -1,2 +1,2 @@
 require './game' 
-run Sinatra::Application
+# run Sinatra::Application
