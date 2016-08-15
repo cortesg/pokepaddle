@@ -139,9 +139,9 @@ function ballHitBrick(ball, brick) {
 function startGame() {
     startText.visible = true;
     cursors.up.onDown.addOnce(function(){
-    startText.visible = false;
-    ball.body.velocity.set(200, -200);
-    playing = true;
+        startText.visible = false;
+        ball.body.velocity.set(200, -200);
+        playing = true;
 	})
 }
 
