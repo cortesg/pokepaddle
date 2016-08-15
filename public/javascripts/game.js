@@ -126,13 +126,13 @@ function ballHitBrick(ball, brick) {
 
     var count_alive = 0;
     for (i = 0; i < bricks.children.length; i++) {
-      if (bricks.children[i].alive == true) {
-        count_alive++;
-      }
+        if (bricks.children[i].alive == true) {
+            count_alive++;
+        }
     }
     if (count_alive == 0) {
-      alert('You are a Pokemon Master, congrats!');
-      location.reload();
+        alert('You are a Pokemon Master, congrats!');
+        location.reload();
     }
 }
 
