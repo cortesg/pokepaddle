@@ -1,4 +1,4 @@
-var game = new Phaser.Game(480, 320, Phaser.AUTO, null, {preload: preload, create: create, update: update});
+var game = new Phaser.Game(480, 320, Phaser.AUTO, null, {preload: preload, create: create, update: update, render: render});
 
 var ball;
 var paddle;
@@ -73,7 +73,16 @@ function create() {
     lifeLostText = game.add.text(game.world.width*0.5, game.world.height*0.6, 'Pokeball lost, press UP to throw another Pokeball', { font: '18px Arial', fill: 'yellow' });
     lifeLostText.anchor.set(0.5);
     lifeLostText.visible = false;
+
+    //TIMER
+    game.time.events.add(Phaser.Timer.SECOND * 4, fadePicture, this);
 }
+
+// function fadePicture() {
+
+//     game.add.tween(paddle).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+
+// }
 
 function update() {
 	game.physics.arcade.collide(ball, paddle, ballHitPaddle);
@@ -161,4 +170,52 @@ function ballLeaveScreen() {
         alert('No more Pokeballs, game over!');
         location.reload();
     }
+}
+
+function updateCounter() {
+
+}
+
+function render() {
+
+    // Closure
+(function() {
+  /**
+   * Decimal adjustment of a number.
+   *
+   * @param {String}  type  The type of adjustment.
+   * @param {Number}  value The number.
+   * @param {Integer} exp   The exponent (the 10 logarithm of the adjustment base).
+   * @returns {Number} The adjusted value.
+   */
+    function decimalAdjust(type, value, exp) {
+        // If the exp is undefined or zero...
+        if (typeof exp === 'undefined' || +exp === 0) {
+          return Math[type](value);
+        }
+        value = +value;
+        exp = +exp;
+        // If the value is not a number or the exp is not an integer...
+        if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+          return NaN;
+        }
+        // Shift
+        value = value.toString().split('e');
+        value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+        // Shift back
+        value = value.toString().split('e');
+        return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+    }  
+
+        // Decimal round
+        if (!Math.round10) {
+            Math.round10 = function(value, exp) {
+            return decimalAdjust('round', value, exp);
+        };
+    };
+    
+    })();
+
+    game.debug.text('Elapsed seconds: ' + Math.round10(this.game.time.totalElapsedSeconds(), -3), 32, 32);
+    //  scoreText.setText
 }
