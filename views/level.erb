@@ -5,19 +5,33 @@
   <title>PokePaddle</title>
   <link rel="shortcut icon" href='../images/pokeball3.png'>
   <link rel="stylesheet" type="text/css" href="styles/application.css">
+  <script src="javascripts/cookies.js"></script>
+  <script src="javascripts/jquery-3.1.0.min.js"></script>
   <script type="text/javascript" src="javascripts/phaser.min.js"></script>
   <script type="text/javascript" src="javascripts/game.js"></script>
 </head>
-	<!-- <audio controls>
+	<audio controls autoplay>
   		<source src="aot.mp3" type="audio/mpeg">
-	</audio>  -->
-  <audio controls autoplay>
+	</audio> 
+<!--   <audio controls autoplay>
       <source src="pokemon.mp3" type="audio/mpeg">
-  </audio> 
+  </audio>  -->
+  <button onclick="reload()">Reload</button>
 <body>
   <!-- phaser will create the canvas and place it here for us -->
-  <!-- <p id="high_score">FILLER TEXT</p> -->
+  <p id="high_score"></p>
   <!-- this logo is actually the only thing I am adding to the body using HTML or CSS -->
   <img src="images/ginoLogo.png" class="picture logo">
 </body>
+
+<script>
+  //getting the value of each cookie and assigning them to variables
+    var highscore_var = Cookies.get("highscore_cookie");
+    //for first-time users; if the cookies don't exist, you have 0 cookies
+    if (highscore_var == null) {
+        Cookies.set("highscore_cookie", "99999");
+    } else {
+        $("#high_score").html("Fastest time: " + highscore_var)
+    }
+</script>
 </html>

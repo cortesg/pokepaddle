@@ -14,6 +14,11 @@ var lives = 3;
 var livesText;
 var lifeLostText;
 
+
+function reload() {
+    location.reload();
+}
+
 function preload() {    
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.pageAlignHorizontally = true;
@@ -96,7 +101,6 @@ function update() {
 	    	paddle.body.velocity.x = 400;
 	    }
     }
-    // this.scoreText.setText(score.toString());  
 
     if (score > localStorage.getItem("highscore")) {
         localStorage.setItem("highscore", score);
@@ -108,8 +112,8 @@ function initBricks() {
         width: 50,
         height: 20,
         count: {
-            row: 7,
-            col: 3
+            row: 1,
+            col: 1
         },
         offset: {
             top: 57,
@@ -147,7 +151,7 @@ function ballHitBrick(ball, brick) {
         }
     }
     if (count_alive == 0) {
-        // highscore = Math.round(this.game.time.totalElapsedSeconds())
+        // highscore = Math.round(score)
         if(localStorage.getItem('highscore') === null){
         highscore = 21
         localStorage.setItem('highscore', score);
@@ -155,6 +159,10 @@ function ballHitBrick(ball, brick) {
         }
 
         scoreText.setText('High Score: 21', 40, 40);
+        if (parseInt(Cookies.get("highscore_cookie")) > game.time.totalElapsedSeconds()) {
+            Cookies.set("highscore_cookie", game.time.totalElapsedSeconds())
+            $("#high_score").html("Fastest time: " + Math.round10(game.time.totalElapsedSeconds(), -2))
+        }
         alert('You are a Pokemon Master, congrats! Your completion time is ' + Math.round10(game.time.totalElapsedSeconds(), -2) + ' seconds.'); 
         location.reload();
     }
@@ -186,6 +194,7 @@ function ballLeaveScreen() {
         localStorage.setItem('highscore', score);
         scoreText.setText('High Score: ' + score, 40, 40);
         }
+        // $("#high_score").html("Fastest time: " + score)
         alert('No more Pokeballs, game over!');
 
         // function gameOver(){
