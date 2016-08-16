@@ -9,6 +9,7 @@ var playing = false;
 var startButton;
 var scoreText;
 var score = 0;
+var highscore = 0;
 var lives = 3;
 var livesText;
 var lifeLostText;
@@ -67,7 +68,7 @@ function create() {
     //TEXT PROJECTION
     textStyle = { font: '18px Arial', fill: '#0095DD' };
     startText = game.add.text(game.world.width*0.06, game.world.height*0.6, 'Be a Pokemon master, press UP to throw the Pokeball', { font: '18px Arial', fill: 'yellow' });
-    scoreText = game.add.text(5, 5, 'Your Pokemon: 0', { font: '18px Arial', fill: '#0095DD' });
+    scoreText = game.add.text(5, 5, 'Pokemon Captured: 0', { font: '18px Arial', fill: '#0095DD' });
     livesText = game.add.text(game.world.width-5, 5, ': '+lives, { font: '18px Arial', fill: '#0095DD' });
     livesText.anchor.set(1,0);
     lifeLostText = game.add.text(game.world.width*0.5, game.world.height*0.6, 'Pokeball lost, press UP to throw another Pokeball', { font: '18px Arial', fill: 'yellow' });
@@ -78,6 +79,7 @@ function create() {
     game.time.events.add(Phaser.Timer.SECOND * 4, fadePicture, this);
 }
 
+//FADER
 // function fadePicture() {
 
 //     game.add.tween(paddle).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
@@ -93,6 +95,11 @@ function update() {
 	    } else if(cursors.right.isDown){
 	    	paddle.body.velocity.x = 400;
 	    }
+    }
+    // this.scoreText.setText(score.toString());  
+
+    if (score > localStorage.getItem("highscore")) {
+        localStorage.setItem("highscore", score);
     }
 }
 
@@ -131,7 +138,7 @@ function ballHitPaddle(ball, paddle) {
 function ballHitBrick(ball, brick) {
 	brick.kill();
     score += 1;
-    scoreText.setText('Your Pokemon: '+score);
+    scoreText.setText('Pokemon Captured: '+ score);
 
     var count_alive = 0;
     for (i = 0; i < bricks.children.length; i++) {
@@ -140,7 +147,15 @@ function ballHitBrick(ball, brick) {
         }
     }
     if (count_alive == 0) {
-        alert('You are a Pokemon Master, congrats!');
+        // highscore = Math.round(this.game.time.totalElapsedSeconds())
+        if(localStorage.getItem('highscore') === null){
+        highscore = 21
+        localStorage.setItem('highscore', score);
+
+        }
+
+        scoreText.setText('High Score: 21', 40, 40);
+        alert('You are a Pokemon Master, congrats! Your completion time is ' + Math.round10(game.time.totalElapsedSeconds(), -2) + ' seconds.'); 
         location.reload();
     }
 }
@@ -167,7 +182,27 @@ function ballLeaveScreen() {
         }, this);
     }
     else {
+        if(localStorage.getItem('highscore') < score){
+        localStorage.setItem('highscore', score);
+        scoreText.setText('High Score: ' + score, 40, 40);
+        }
         alert('No more Pokeballs, game over!');
+
+        // function gameOver(){
+
+// if(localStorage.getItem('highscore') === null){
+
+// localStorage.setItem('highscore',score);
+
+// }
+
+// else if(score > localStorage.getItem('highscore')){ 
+
+// localStorage.setItem('highscore',score);
+
+// }
+
+// }
         location.reload();
     }
 }
@@ -213,9 +248,11 @@ function render() {
             return decimalAdjust('round', value, exp);
         };
     };
-    
+
     })();
 
-    game.debug.text('Elapsed seconds: ' + Math.round10(this.game.time.totalElapsedSeconds(), -3), 32, 32);
-    //  scoreText.setText
+    game.debug.text('Timer: ' + Math.round10(this.game.time.totalElapsedSeconds(), -2), 250, 19);
+
 }
+
+//Update Function HERE//Psuedo code / Real codeif(player got hit by something (in other terms, he lost the game)){  //We know before this point of losing the player actually got 'some' points               }//If the score is greater than what was stored, then I tell localStorage, "Hey set 'score' as your new stored score as the highscore now//After that I display it in the update function when the player clicks "try again" or something of the sort to reset the gamehighScoreText.content = 'HIGHSCORE: ' + localStorage.getItem("highscore");
