@@ -1,4 +1,9 @@
 require 'sinatra'
+require "sinatra/activerecord"
+require "sinatra/flash"
+require "./models"
+
+# configure(:development){set :database, "sqlite3:database.sqlite3"}
 
 get '/' do
 	erb :index
