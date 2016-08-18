@@ -1,5 +1,13 @@
 require 'sinatra'
 
 get '/' do
-  erb :level
+	erb :index
+end
+
+get '/game' do
+	erb :level
+end
+
+get '/highscore' do
+	erb :highscore
 end

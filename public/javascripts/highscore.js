@@ -34,6 +34,7 @@ if (score_var == null && time_var == null) {
     Cookies.set("score_cookie", "0");
     Cookies.set("fastest_time_cookie", "99999");
     $("#high_score").html("High Score: 0")
+    location.reload()
 } else if (time_var == "99999") {
     $("#high_score").html("High Score: " + score_var)
 } else {
