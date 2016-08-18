@@ -10,7 +10,7 @@ var startButton;
 var scoreText;
 var score = 0;
 var highscore = 0;
-var lives = 3;
+var lives = 4;
 var livesText;
 var lifeLostText;
 
@@ -84,7 +84,7 @@ function create() {
     game.time.events.add(Phaser.Timer.SECOND * 4, fadePicture, this);
 }
 
-//FADER
+// FADER
 // function fadePicture() {
 
 //     game.add.tween(paddle).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
@@ -101,10 +101,6 @@ function update() {
 	    	paddle.body.velocity.x = 400;
 	    }
     }
-
-    if (score > localStorage.getItem("highscore")) {
-        localStorage.setItem("highscore", score);
-    }
 }
 
 function initBricks() {
@@ -112,8 +108,8 @@ function initBricks() {
         width: 50,
         height: 20,
         count: {
-            row: 1,
-            col: 1
+            row: 7,
+            col: 3
         },
         offset: {
             top: 57,
@@ -140,8 +136,9 @@ function ballHitPaddle(ball, paddle) {
 }
 
 function ballHitBrick(ball, brick) {
+    $("audio")[1].play();
 	brick.kill();
-    score += 1;
+    score++;
     scoreText.setText('Pokemon Captured: '+ score);
 
     var count_alive = 0;
@@ -152,13 +149,10 @@ function ballHitBrick(ball, brick) {
     }
     if (count_alive == 0) {
         // highscore = Math.round(score)
-        if(localStorage.getItem('highscore') === null){
-        highscore = 21
-        localStorage.setItem('highscore', score);
-
-        }
-
-        scoreText.setText('High Score: 21', 40, 40);
+        //LAST POKEMON ANIMATION
+        // $(brick).animate({width: 400px, height:400px}, 1000);        
+        // $(brick).animate({width: 200px, height:200px}, 1000);
+        // scoreText.setText('High Score: 21', 40, 40);
         if (parseInt(Cookies.get("highscore_cookie")) > game.time.totalElapsedSeconds()) {
             Cookies.set("highscore_cookie", game.time.totalElapsedSeconds())
             $("#high_score").html("Fastest time: " + Math.round10(game.time.totalElapsedSeconds(), -2))
@@ -190,28 +184,11 @@ function ballLeaveScreen() {
         }, this);
     }
     else {
-        if(localStorage.getItem('highscore') < score){
-        localStorage.setItem('highscore', score);
-        scoreText.setText('High Score: ' + score, 40, 40);
+        if ((Cookies.get("highscore_cookie") == "99999") && (score < 21) && (score > Cookies.get("score_cookie"))) {
+            Cookies.set("score_cookie", score)
+            $("#high_score").html("High Score: " + Cookies.get("score_cookie"))
         }
-        // $("#high_score").html("Fastest time: " + score)
         alert('No more Pokeballs, game over!');
-
-        // function gameOver(){
-
-// if(localStorage.getItem('highscore') === null){
-
-// localStorage.setItem('highscore',score);
-
-// }
-
-// else if(score > localStorage.getItem('highscore')){ 
-
-// localStorage.setItem('highscore',score);
-
-// }
-
-// }
         location.reload();
     }
 }
