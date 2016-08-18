@@ -1,3 +1,4 @@
+//for rounding to hundreth
 function decimalAdjust(type, value, exp) {
         // If the exp is undefined or zero...
         if (typeof exp === 'undefined' || +exp === 0) {
@@ -24,27 +25,17 @@ function decimalAdjust(type, value, exp) {
         };
     };
 
-if (Cookies.get("score_cookie") == null) {
-    Cookies.set("score_cookie", "0");
-    $("#high_score").html("High Score: 0")
-} 
-
 //getting the value of each cookie and assigning them to variables
-var highscore_var = Cookies.get("highscore_cookie");
-//for first-time users; if the cookies don't exist, your fastest time is an arbitrary high number
-if (highscore_var == null) {
-    Cookies.set("highscore_cookie", "99999");
-} 
+var score_var = Cookies.get("score_cookie")
+var time_var = Cookies.get("fastest_time_cookie");
 
-if (Cookies.get("highscore_cookie") == "99999") {
-    $("#high_score").html("High Score: " + Cookies.get("score_cookie"))
+//for first-time users; if the cookies don't exist, your high score is 0 and your fastest time is an arbitrary high number
+if (score_var == null && time_var == null) {
+    Cookies.set("score_cookie", "0");
+    Cookies.set("fastest_time_cookie", "99999");
+    $("#high_score").html("High Score: 0")
+} else if (time_var == "99999") {
+    $("#high_score").html("High Score: " + score_var)
 } else {
-    $("#high_score").html("Fastest time: " + Math.round10(highscore_var, -2) + "s")
+    $("#high_score").html("Fastest time: " + Math.round10(time_var, -2) + "s")
 }
-
-
-
-
-// if (parseInt(Cookies.get("highscore_cookie")) > game.time.totalElapsedSeconds() && score == 21){
-//     $("#high_score").html("Fastest time: " + Math.round10(highscore_var, -2) + "s")
-// }

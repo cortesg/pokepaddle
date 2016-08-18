@@ -10,10 +10,11 @@ var startButton;
 var scoreText;
 var score = 0;
 var highscore = 0;
-var lives = 4;
+var lives = 1;
 var livesText;
 var lifeLostText;
-
+var time_var = Cookies.get("fastest_time_cookie");
+var score_var = Cookies.get("score_cookie");
 
 function reload() {
     location.reload();
@@ -148,13 +149,12 @@ function ballHitBrick(ball, brick) {
         }
     }
     if (count_alive == 0) {
-        // highscore = Math.round(score)
         //LAST POKEMON ANIMATION
         // $(brick).animate({width: 400px, height:400px}, 1000);        
         // $(brick).animate({width: 200px, height:200px}, 1000);
-        // scoreText.setText('High Score: 21', 40, 40);
-        if (parseInt(Cookies.get("highscore_cookie")) > game.time.totalElapsedSeconds()) {
-            Cookies.set("highscore_cookie", game.time.totalElapsedSeconds())
+        scoreText.setText('High Score: 21', 40, 40);
+        if (parseInt(time_var) > game.time.totalElapsedSeconds()) {  
+            Cookies.set("fastest_time_cookie", game.time.totalElapsedSeconds())
             $("#high_score").html("Fastest time: " + Math.round10(game.time.totalElapsedSeconds(), -2))
         }
         alert('You are a Pokemon Master, congrats! Your completion time is ' + Math.round10(game.time.totalElapsedSeconds(), -2) + ' seconds.'); 
@@ -184,9 +184,9 @@ function ballLeaveScreen() {
         }, this);
     }
     else {
-        if ((Cookies.get("highscore_cookie") == "99999") && (score < 21) && (score > Cookies.get("score_cookie"))) {
+        if (time_var == "99999" && score < 21 && score > score_var) {
             Cookies.set("score_cookie", score)
-            $("#high_score").html("High Score: " + Cookies.get("score_cookie"))
+            $("#high_score").html("High Score: " + score)
         }
         alert('No more Pokeballs, game over!');
         location.reload();
@@ -240,5 +240,3 @@ function render() {
     game.debug.text('Timer: ' + Math.round10(this.game.time.totalElapsedSeconds(), -2), 250, 19);
 
 }
-
-//Update Function HERE//Psuedo code / Real codeif(player got hit by something (in other terms, he lost the game)){  //We know before this point of losing the player actually got 'some' points               }//If the score is greater than what was stored, then I tell localStorage, "Hey set 'score' as your new stored score as the highscore now//After that I display it in the update function when the player clicks "try again" or something of the sort to reset the gamehighScoreText.content = 'HIGHSCORE: ' + localStorage.getItem("highscore");
