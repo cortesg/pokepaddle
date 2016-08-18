@@ -1,4 +1,4 @@
-var game = new Phaser.Game(480, 320, Phaser.AUTO, null, {preload: preload, create: create, update: update});
+var game = new Phaser.Game(480, 320, Phaser.AUTO, null, {preload: preload, create: create, update: update, render: render});
 
 var ball;
 var paddle;
@@ -9,9 +9,16 @@ var playing = false;
 var startButton;
 var scoreText;
 var score = 0;
-var lives = 3;
+var highscore = 0;
+var lives = 1;
 var livesText;
 var lifeLostText;
+var time_var = Cookies.get("fastest_time_cookie");
+var score_var = Cookies.get("score_cookie");
+
+function reload() {
+    location.reload();
+}
 
 function preload() {    
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -67,13 +74,23 @@ function create() {
     //TEXT PROJECTION
     textStyle = { font: '18px Arial', fill: '#0095DD' };
     startText = game.add.text(game.world.width*0.06, game.world.height*0.6, 'Be a Pokemon master, press UP to throw the Pokeball', { font: '18px Arial', fill: 'yellow' });
-    scoreText = game.add.text(5, 5, 'Your Pokemon: 0', { font: '18px Arial', fill: '#0095DD' });
+    scoreText = game.add.text(5, 5, 'Pokemon Captured: 0', { font: '18px Arial', fill: '#0095DD' });
     livesText = game.add.text(game.world.width-5, 5, ': '+lives, { font: '18px Arial', fill: '#0095DD' });
     livesText.anchor.set(1,0);
     lifeLostText = game.add.text(game.world.width*0.5, game.world.height*0.6, 'Pokeball lost, press UP to throw another Pokeball', { font: '18px Arial', fill: 'yellow' });
     lifeLostText.anchor.set(0.5);
     lifeLostText.visible = false;
+
+    //TIMER
+    game.time.events.add(Phaser.Timer.SECOND * 4, fadePicture, this);
 }
+
+// FADER
+// function fadePicture() {
+
+//     game.add.tween(paddle).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+
+// }
 
 function update() {
 	game.physics.arcade.collide(ball, paddle, ballHitPaddle);
@@ -120,9 +137,10 @@ function ballHitPaddle(ball, paddle) {
 }
 
 function ballHitBrick(ball, brick) {
+    $("audio")[1].play();
 	brick.kill();
-    score += 1;
-    scoreText.setText('Your Pokemon: '+score);
+    score++;
+    scoreText.setText('Pokemon Captured: '+ score);
 
     var count_alive = 0;
     for (i = 0; i < bricks.children.length; i++) {
@@ -131,7 +149,15 @@ function ballHitBrick(ball, brick) {
         }
     }
     if (count_alive == 0) {
-        alert('You are a Pokemon Master, congrats!');
+        //LAST POKEMON ANIMATION
+        // $(brick).animate({width: 400px, height:400px}, 1000);        
+        // $(brick).animate({width: 200px, height:200px}, 1000);
+        scoreText.setText('High Score: 21', 40, 40);
+        if (parseInt(time_var) > game.time.totalElapsedSeconds()) {  
+            Cookies.set("fastest_time_cookie", game.time.totalElapsedSeconds())
+            $("#high_score").html("Fastest time: " + Math.round10(game.time.totalElapsedSeconds(), -2))
+        }
+        alert('You are a Pokemon Master, congrats! Your completion time is ' + Math.round10(game.time.totalElapsedSeconds(), -2) + ' seconds.'); 
         location.reload();
     }
 }
@@ -158,7 +184,59 @@ function ballLeaveScreen() {
         }, this);
     }
     else {
+        if (time_var == "99999" && score < 21 && score > score_var) {
+            Cookies.set("score_cookie", score)
+            $("#high_score").html("High Score: " + score)
+        }
         alert('No more Pokeballs, game over!');
         location.reload();
     }
+}
+
+function updateCounter() {
+
+}
+
+function render() {
+
+    // Closure
+(function() {
+  /**
+   * Decimal adjustment of a number.
+   *
+   * @param {String}  type  The type of adjustment.
+   * @param {Number}  value The number.
+   * @param {Integer} exp   The exponent (the 10 logarithm of the adjustment base).
+   * @returns {Number} The adjusted value.
+   */
+    function decimalAdjust(type, value, exp) {
+        // If the exp is undefined or zero...
+        if (typeof exp === 'undefined' || +exp === 0) {
+          return Math[type](value);
+        }
+        value = +value;
+        exp = +exp;
+        // If the value is not a number or the exp is not an integer...
+        if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+          return NaN;
+        }
+        // Shift
+        value = value.toString().split('e');
+        value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+        // Shift back
+        value = value.toString().split('e');
+        return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+    }  
+
+        // Decimal round
+        if (!Math.round10) {
+            Math.round10 = function(value, exp) {
+            return decimalAdjust('round', value, exp);
+        };
+    };
+
+    })();
+
+    game.debug.text('Timer: ' + Math.round10(this.game.time.totalElapsedSeconds(), -2), 250, 19);
+
 }
