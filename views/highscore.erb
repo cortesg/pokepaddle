@@ -1,3 +1,9 @@
 HighScores
 
+<% @users.each do |u| %>
+    <p><%= u.name %> Time:<%= u.time %></p>
+<% end %>
+
+<p><%= @name %> Your Time: <%= @time %></p> 
+
 <a href="/game">Click here to play the game</a>

@@ -19,6 +19,12 @@
   <audio src="pika.mp3"></audio> 
   <!-- <button onclick="reload()">Reload</button> -->
 <body>
+    <!-- <h1>ENTER YOUR HIGH SCORE</h1> -->
+    <form method="post" action="/game">
+      <input type="text" name="name" placeholder="name" required><br>
+      <input type="hidden" name="time" value="$.cookie('fastest_time_cookie')"><br>
+      <input type="submit">
+    </form>
   <!-- phaser will create the canvas and place it here for us -->
   <p id="high_score"></p>
   <!-- this logo is actually the only thing I am adding to the body using HTML or CSS -->
