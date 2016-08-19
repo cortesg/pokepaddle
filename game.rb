@@ -16,8 +16,9 @@ end
 
 post "/game" do
 	User.create(
-		name: params[:name],
-		time: params[:time]
+		# name: params[:name],
+		name: cookies[:person_cookie],
+		time: cookies[:fastest_time_cookie]
 	)
 	redirect "/highscore"  
 end
