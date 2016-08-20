@@ -82,7 +82,7 @@ function create() {
     lifeLostText.visible = false;
 
     //TIMER
-    game.time.events.add(Phaser.Timer.SECOND * 4, fadePicture, this);
+    // game.time.events.add(Phaser.Timer.SECOND * 4, fadePicture, this);
 }
 
 // FADER

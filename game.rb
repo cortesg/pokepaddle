@@ -24,7 +24,11 @@ post "/game" do
 end
 
 get '/highscore' do
-	@users = User.all.last(10).reverse!
+	@users = User.all.sort_by { |x| x[:time] }
+	# { |name, time| time }
+	# User.all.last(10).reverse! 
+	# User.all.sort_by { |name, time| time }
+	# User.all.sort_by { |name, time| [time, name] }
 	@name = cookies[:person_cookie]
 	@time = cookies[:fastest_time_cookie]
 	erb :highscore
