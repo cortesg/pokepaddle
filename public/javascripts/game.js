@@ -26,9 +26,9 @@ function preload() {
     game.scale.pageAlignVertically = true;
 
     //LOADING IMAGES
-    game.load.image('background', '../images/kanto.jpeg');
+    game.load.image('background', '../images/johto.png');
     game.load.image('ball', '../images/pokeballS.png', 50, 50);
-    game.load.image('ball2', '../images/pokeballS.png', 40, 40);
+    game.load.image('ball2', '../images/pokeballS_opt.png', 40, 40);
     game.load.image('paddle', '../images/platform.png')
     game.load.image('brick', '../images/pikachu.png');
 }
@@ -39,8 +39,8 @@ function create() {
 
     //BACKGROUND IMAGING
     var background = game.add.image(0, 0, 'background');
-    background.scale.x = game.rnd.realInRange(1.99, 1.94);
-    background.scale.y = game.rnd.realInRange(1.6, 1.6);
+    background.scale.x = game.rnd.realInRange(1, 1);
+    background.scale.y = game.rnd.realInRange(1, 1);
 
     //NO SOUTH BOUNDARY
 	game.physics.arcade.checkCollision.down = false;
@@ -113,7 +113,7 @@ function initBricks() {
             col: 3
         },
         offset: {
-            top: 57,
+            top: 58,
             left: 30
         },
         padding: 19

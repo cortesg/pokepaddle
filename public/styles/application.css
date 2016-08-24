@@ -42,9 +42,17 @@ body {
    margin: 0;
    padding: 0;
    overflow-y: scroll;
-   background-color: RGBA(170, 201, 212, 1);
+   background-color: #FE9E1A; /*RGBA(170, 201, 212, 1);*/
    margin-top: 10px;
-   text-align: center;
+   text-align: center
+}
+
+#ghost {
+   background-color: #8C748C
+}
+
+.ghost_score {
+   color: white;
 }
 
 * { padding: 0; margin: 0; overflow-y: scroll}

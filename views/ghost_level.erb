@@ -10,19 +10,20 @@
   <script type="text/javascript" src="javascripts/phaser.min.js"></script>
   <script type="text/javascript" src="javascripts/ghost_game.js"></script>
 </head>
-	<audio controls>
+	<audio>
   		<source src="aot.mp3" type="audio/mpeg">
 	</audio> 
   <!-- <audio controls>
       <source src="pokemon.mp3" type="audio/mpeg">
   </audio> -->
-  <audio src="pika.mp3"></audio> 
+  <audio src="pika.mp3"></audio>
+  <audio src="haunter.mp3"></audio>  
   <!-- <button onclick="reload()">Reload</button> -->
-<body>
+<body id="ghost">
     <!-- <h1>ENTER YOUR HIGH SCORE</h1> -->
     <form method="post" action="/ghost">
       <!-- <input type="text" name="name" placeholder="name" required><br> -->
-      <p id="high_score"></p>
+      <p id="high_score" class="ghost_score"></p>
       <input type="submit">
     </form>
   <!-- phaser will create the canvas and place it here for us -->
