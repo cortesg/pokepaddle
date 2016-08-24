@@ -7,6 +7,9 @@ require "sinatra/cookies"
 configure(:development){set :database, "sqlite3:database.sqlite3"}
 
 get '/' do
+	@users = User.all.sort_by { |x| x[:time] }
+	@name = cookies[:person_cookie]
+	@time = cookies[:fastest_time_cookie]
 	erb :index
 end
 
@@ -18,17 +21,26 @@ post "/game" do
 	User.create(
 		# name: params[:name],
 		name: cookies[:person_cookie],
-		time: cookies[:fastest_time_cookie]
+		time: (cookies[:fastest_time_cookie]) #.to_f
 	)
-	redirect "/highscore"  
+	redirect "/"  
+end
+
+get '/ghost' do
+	erb :ghost_level
+end
+
+post "/ghost" do
+	User.create(
+		# name: params[:name],
+		name: cookies[:person_cookie],
+		time: (cookies[:fastest_time_cookie]) #.to_f
+	)
+	redirect "/"  
 end
 
 get '/highscore' do
 	@users = User.all.sort_by { |x| x[:time] }
-	# { |name, time| time }
-	# User.all.last(10).reverse! 
-	# User.all.sort_by { |name, time| time }
-	# User.all.sort_by { |name, time| [time, name] }
 	@name = cookies[:person_cookie]
 	@time = cookies[:fastest_time_cookie]
 	erb :highscore

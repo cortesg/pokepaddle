@@ -1,10 +1,41 @@
-Welcome to PokePaddle!
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>PokePaddle</title>
+	<link rel="shortcut icon" href='../images/pokeball3.png'>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-Press up to throw Pokeball.
-Press left to move paddle left and right to move paddle right.
-Catch all Pokemon to win!
-
-Your score will be saved when you come back!
-
-<a href="/game">Click here to play the game</a>
-<a href="/highscore">Fastest Times</a>
+</head>
+<body class="no-js">
+    <div class="main">
+        <header>
+            <div class="wrap">
+                <!-- <img src="images/PokePaddle.png" id="pokepaddle" height="532" width="252" alt="" class="header-img"> -->
+                <div id="highscore_wrapper" style="float: right">
+					<h1>Best Times</h1>
+						<% @users.each do |u| %>
+    			<div id="highscore_posts">
+    <!--    <div id="highscore_name"> --><%= u.name %>: <%= u.time %>s
+    		</div>
+			<% end %>
+	</div>
+                <div class="header-wrapper"> <!-- style="font-family: futura" -->
+                    <h1>Welcome to <span>PokePaddle</span></h1>
+                    <p>Press UP ARROW to throw Pokeball!</p><br>
+                    <p>Press LEFT ARROW to move the paddle left and RIGHT ARROW to move paddle right.</p><br> 
+                    <p>Catch all Pokemon to win! Your high score will be saved when you come back!</p>
+                    <!-- <p class="autor"><a href="#">John Doe</a></p> -->
+                    <div class="buttons-wrapper">
+                        <a href="/game" class="button">Play the Game!</a>
+                        <a href="/ghost" class="button button-stripe">Ghost Type Mode</a>
+                    </div>
+                </div>
+                <!-- /.header-wrapper -->
+            </div>
+            <!-- /.wrap -->
+            <img class="background" src="images/pikachuBG.jpg">
+        </header>
+    </div>
+</body>
+</html>

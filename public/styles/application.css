@@ -31,7 +31,7 @@
 }
 
 .logo {
-   margin-top: 555px;
+   margin-top: 590px;
    margin-left: 430px;
    width: 475px;
    /*height: auto;*/
@@ -41,11 +41,11 @@ body {
    color: maroon;
    margin: 0;
    padding: 0;
-   overflow: hidden;
+   overflow-y: scroll;
    background-color: RGBA(170, 201, 212, 1);
    margin-top: 10px;
    text-align: center;
 }
 
-* { padding: 0; margin: 0; }
+* { padding: 0; margin: 0; overflow-y: scroll}
 
