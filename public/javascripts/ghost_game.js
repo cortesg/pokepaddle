@@ -156,12 +156,6 @@ function ballHitBrick(ball, brick) {
         if (parseInt(time_var) > game.time.totalElapsedSeconds()) {  
             Cookies.set("fastest_time_cookie", game.time.totalElapsedSeconds())
             $("#high_score").html("Fastest time: " + Math.round10(game.time.totalElapsedSeconds(), -2))
-        //     var check = confirm('You are a Pokemon Master, congrats! Your completion time is ' + Math.round10(game.time.totalElapsedSeconds(), -2) + ' seconds. Would you like to enter your score?'); 
-        //     if (check == true) {
-        //         window.location.href = '/highscore';
-        //     } else {
-        //         location.reload();
-        //     }
         }
         alert('You are a Pokemon Master, congrats! Your completion time is ' + Math.round10(game.time.totalElapsedSeconds(), -2) + ' seconds.'); 
         location.reload();

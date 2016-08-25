@@ -27,7 +27,7 @@ body {
    margin: 0;
    padding: 0;
    overflow-y: scroll;
-   background-color: #FE9E1A; /*RGBA(170, 201, 212, 1);*/
+   background-color: #FE9E1A;
    margin-top: 10px;
    text-align: center
 }
@@ -44,7 +44,6 @@ body {
    margin-top: 590px;
    margin-left: 430px;
    width: 475px;
-   /*height: auto;*/
 }
 
 #ghost {
@@ -61,5 +60,3 @@ body {
    overflow-y: scroll;
    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
 }
-
-
