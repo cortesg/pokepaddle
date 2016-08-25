@@ -1,33 +1,33 @@
 <!DOCTYPE HTML>
-<html>
-<head>
-	<title>PokePaddle</title>
-	<link rel="shortcut icon" href='../images/pokeball3.png'>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <html>
+    <head>
+    	<title>PokéPaddle - Welcome</title>
+    	<link rel="shortcut icon" href='../images/pokeball3.png'>
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-</head>
-<body>
-    <div class="wrap">
-        <div id="highscore_wrapper">
-			<h1>Best Times</h1>
-			<% @users.each do |u| %>
-                <div id="highscore_posts"><%= u.name %>: <%= u.time %>s</div>
-            <% end %>
-        </div>
-        <div>
-            <h1>Welcome to <span>PokePaddle</span></h1>
-            <ul>
-                <li>Press UP ARROW to throw Pokeball!</li><br>
-                <li>Press LEFT ARROW to move the paddle left and RIGHT ARROW to move paddle right.</li><br> 
-                <li>Catch all Pokemon to win! Your high score will be saved when you come back!</li>
-            </ul>
-            <div class="buttons_wrapper">
-                <a href="/game" class="button">Play the Game!</a>
-                <a href="/ghost" class="button button-stripe">Ghost Type Mode</a>
+    </head>
+    <body>
+        <div class="wrap">
+            <div id="highscore_wrapper">
+    			<h1>Best Times</h1>
+    			<% @users.each do |u| %>
+                    <div id="highscore_posts"><%= u.name %>: <%= u.time %>s</div>
+                <% end %>
+            </div>
+            <div>
+                <h1>Welcome to <span>PokePaddle</span></h1>
+                <ul>
+                    <li>Press UP ARROW to throw Pokeball!</li><br>
+                    <li>Press LEFT ARROW to move the paddle left and RIGHT ARROW to move paddle right.</li><br> 
+                    <li>Catch all Pokemon to win! Your high score will be saved when you come back!</li>
+                </ul>
+                <div class="buttons_wrapper">
+                    <a href="/game" class="button">Play the Game!</a>
+                    <a href="/ghost" class="button button-stripe">Ghost Type Mode</a>
+                </div>
             </div>
         </div>
-    </div>
-    <img class="background" src="images/pikachuBG.jpg">
-</body>
+        <img class="background" src="images/pikachuBG.jpg">
+    </body>
 </html>

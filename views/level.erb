@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>PokePaddle</title>
-  <link rel="shortcut icon" href='../images/pokeball3.png'>
-  <link rel="stylesheet" type="text/css" href="styles/application.css">
-  <script src="javascripts/cookies.js"></script>
-  <script src="javascripts/jquery-3.1.0.min.js"></script>
-  <script type="text/javascript" src="javascripts/phaser.min.js"></script>
-  <script type="text/javascript" src="javascripts/game.js"></script>
-</head>
-	<!-- <audio autoplay loop>
-  		<source src="aot.mp3" type="audio/mpeg">
-	</audio>  -->
-  <audio>
-      <source src="pokemon.mp3" type="audio/mpeg">
-  </audio>
-  <audio src="pika.mp3"></audio> 
-<body>
-    <form method="post" action="/game">
-      <p id="high_score"></p>
-      <input type="submit" value="Submit your best time!">
-    </form>
-  <!-- phaser will create the canvas and place it here for us -->
-  <!-- this logo is actually the only thing I am adding to the body using HTML or CSS -->
-  <img src="images/ginoLogo.png" class="picture logo">
-</body>
-  <script type="text/javascript" src="javascripts/highscore.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <title>PokéPaddle</title>
+    <link rel="shortcut icon" href='../images/pokeball3.png'>
+    <link rel="stylesheet" type="text/css" href="styles/application.css">
+    <script src="javascripts/cookies.js"></script>
+    <script src="javascripts/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="javascripts/phaser.min.js"></script>
+    <script type="text/javascript" src="javascripts/game.js"></script>
+  </head>
+    <audio autoplay loop>
+      <source src="sounds/pokemon.mp3" type="audio/mpeg">
+    </audio>
+    <audio src="sounds/pika.mp3"></audio> 
+  <body>
+      <form method="post" action="/game">
+        <p id="high_score"></p>
+        <input type="submit" value="Submit your best time!">
+      </form>
+    <!-- phaser will create the canvas and place it here for us -->
+    <!-- this logo is actually the only thing I am adding to the body using HTML or CSS -->
+    <img src="images/ginoLogo.png" class="picture logo">
+  </body>
+    <script type="text/javascript" src="javascripts/highscore.js"></script>
 </html>
