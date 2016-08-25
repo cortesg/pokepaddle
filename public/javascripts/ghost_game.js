@@ -157,36 +157,32 @@ function ballHitBrick(ball, brick) {
             Cookies.set("fastest_time_cookie", game.time.totalElapsedSeconds())
             $("#high_score").html("Fastest time: " + Math.round10(game.time.totalElapsedSeconds(), -2))
         }
-        alert('You are a Pokemon Master, congrats! Your completion time is ' + Math.round10(game.time.totalElapsedSeconds(), -2) + ' seconds.'); 
-        location.reload();
+    alert('You are a Pokemon Master, congrats! Your completion time is ' + Math.round10(game.time.totalElapsedSeconds(), -2) + ' seconds.'); 
+    location.reload();
     }
 }
 
 function startGame() {
-    startText.visible = true;
     cursors.up.onDown.addOnce(function(){
-        // if (playing == false) {
+        if (playing == false) {
             startText.visible = false;
             ball.body.velocity.set(200, -200);
             playing = true;
-        // }
+        }
     })
 }
 
 function ballLeaveScreen() {
-    // playing = false
     lives--;
     if(lives) {
         livesText.setText(': '+lives);
         lifeLostText.visible = true;
         ball.reset(game.world.width*0.5, game.world.height-55);
-        // if (playing = false) {
-            cursors.up.onDown.addOnce(function(){
-                playing = true;
-                lifeLostText.visible = false;
-                ball.body.velocity.set(200, -200);
-            }, this);
-        // }
+        cursors.up.onDown.addOnce(function(){
+            playing = true;
+            lifeLostText.visible = false;
+            ball.body.velocity.set(200, -200);
+        }, this);
     }
     else {
         if (time_var == "99999" && score < 21 && score > score_var) {
@@ -196,9 +192,6 @@ function ballLeaveScreen() {
         alert('No more Pokeballs, game over!');
         location.reload();
     }
-}
-
-function updateCounter() {
 }
 
 function render() {

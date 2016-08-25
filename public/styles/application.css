@@ -32,6 +32,17 @@ body {
    text-align: center
 }
 
+a {
+   text-align: left;
+   color: white;
+   font-style: helvetica;
+   text-decoration: none;
+   border: 1px solid black
+}
+
+a:hover {
+   color: lightblue;
+}
 .picture {
    z-index: 1;
    display: block;

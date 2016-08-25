@@ -81,16 +81,7 @@ function create() {
     lifeLostText.anchor.set(0.5);
     lifeLostText.visible = false;
 
-    //TIMER
-    // game.time.events.add(Phaser.Timer.SECOND * 4, fadePicture, this);
 }
-
-// FADER
-// function fadePicture() {
-
-//     game.add.tween(paddle).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-
-// }
 
 function update() {
 	game.physics.arcade.collide(ball, paddle, ballHitPaddle);
@@ -157,18 +148,18 @@ function ballHitBrick(ball, brick) {
             Cookies.set("fastest_time_cookie", game.time.totalElapsedSeconds())
             $("#high_score").html("Fastest time: " + Math.round10(game.time.totalElapsedSeconds(), -2))
         }
-        alert('You are a Pokemon Master, congrats! Your completion time is ' + Math.round10(game.time.totalElapsedSeconds(), -2) + ' seconds.'); 
-        location.reload();
-        }
+    alert('You are a Pokemon Master, congrats! Your completion time is ' + Math.round10(game.time.totalElapsedSeconds(), -2) + ' seconds.'); 
+    location.reload();    
     }
 }
 
 function startGame() {
-    startText.visible = true;
     cursors.up.onDown.addOnce(function(){
-        startText.visible = false;
-        ball.body.velocity.set(200, -200);
-        playing = true;
+        if (playing == false) {
+            startText.visible = false;
+            ball.body.velocity.set(200, -200);
+            playing = true;
+        }
 	})
 }
 
@@ -192,9 +183,6 @@ function ballLeaveScreen() {
         alert('No more Pokeballs, game over!');
         location.reload();
     }
-}
-
-function updateCounter() {
 }
 
 function render() {
