@@ -19,9 +19,8 @@ end
 
 post "/game" do
 	User.create(
-		# name: params[:name],
 		name: cookies[:person_cookie],
-		time: (cookies[:fastest_time_cookie]) #.to_f
+		time: cookies[:fastest_time_cookie]
 	)
 	redirect "/"  
 end
@@ -32,16 +31,8 @@ end
 
 post "/ghost" do
 	User.create(
-		# name: params[:name],
 		name: cookies[:person_cookie],
-		time: (cookies[:fastest_time_cookie]) #.to_f
+		time: cookies[:fastest_time_cookie]
 	)
 	redirect "/"  
 end
-
-# get '/highscore' do
-# 	@users = User.all.sort_by { |x| x[:time] }
-# 	@name = cookies[:person_cookie]
-# 	@time = cookies[:fastest_time_cookie]
-# 	erb :highscore
-# end

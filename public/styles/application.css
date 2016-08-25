@@ -14,12 +14,22 @@
  *= require_self
  */
 
- canvas {
+canvas {
    display: block;
    margin-top: 10px;
    margin-left: 230px;
    overflow: hidden;
    height: 600px;
+}
+
+body {
+   color: maroon;
+   margin: 0;
+   padding: 0;
+   overflow-y: scroll;
+   background-color: #FE9E1A; /*RGBA(170, 201, 212, 1);*/
+   margin-top: 10px;
+   text-align: center
 }
 
 .picture {
@@ -35,16 +45,6 @@
    margin-left: 430px;
    width: 475px;
    /*height: auto;*/
-}
-
-body {
-   color: maroon;
-   margin: 0;
-   padding: 0;
-   overflow-y: scroll;
-   background-color: #FE9E1A; /*RGBA(170, 201, 212, 1);*/
-   margin-top: 10px;
-   text-align: center
 }
 
 #ghost {
