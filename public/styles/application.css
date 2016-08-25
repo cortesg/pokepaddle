@@ -55,5 +55,11 @@ body {
    color: white;
 }
 
-* { padding: 0; margin: 0; overflow-y: scroll}
+* { 
+   padding: 0; 
+   margin: 0; 
+   overflow-y: scroll;
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+
 

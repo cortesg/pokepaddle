@@ -39,9 +39,9 @@ post "/ghost" do
 	redirect "/"  
 end
 
-get '/highscore' do
-	@users = User.all.sort_by { |x| x[:time] }
-	@name = cookies[:person_cookie]
-	@time = cookies[:fastest_time_cookie]
-	erb :highscore
-end
+# get '/highscore' do
+# 	@users = User.all.sort_by { |x| x[:time] }
+# 	@name = cookies[:person_cookie]
+# 	@time = cookies[:fastest_time_cookie]
+# 	erb :highscore
+# end
