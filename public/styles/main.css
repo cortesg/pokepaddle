@@ -49,11 +49,14 @@ span {
 
 #highscore_wrapper {
     float: right;
+    background: rgba(114,109,109, 0.98);
+    font-size: 20px;
     text-align: center;
     border: 1px solid black;
     height: 500px;
     width: 40%;
-    overflow-y: scroll
+    margin-left: 100px;
+    overflow-y: scroll;
 }
 
 #pokepaddle {

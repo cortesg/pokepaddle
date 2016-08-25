@@ -34,5 +34,7 @@ post "/ghost" do
 		name: cookies[:person_cookie],
 		time: cookies[:fastest_time_cookie]
 	)
+	# in the future, will make a separate high score table for ghost high scores
 	redirect "/"  
 end
+
