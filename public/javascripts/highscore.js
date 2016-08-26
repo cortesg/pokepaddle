@@ -16,14 +16,13 @@ function decimalAdjust(type, value, exp) {
         // Shift back
         value = value.toString().split('e');
         return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
-    }  
-
+        }  
         // Decimal round
         if (!Math.round10) {
             Math.round10 = function(value, exp) {
             return decimalAdjust('round', value, exp);
         };
-    };
+};
 
 //getting the value of each cookie and assigning them to variables
 var person_var = Cookies.get("name_cookie")

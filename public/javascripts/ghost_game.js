@@ -27,8 +27,8 @@ function preload() {
 
     //LOADING IMAGES
     game.load.image('background', '../images/johto.png');
-    game.load.image('ball', '../images/pokeballS.png', 50, 50);
-    game.load.image('ball2', '../images/pokeballS_opt.png', 40, 40);
+    game.load.image('ball', '../images/pokeball.png', 50, 50);
+    game.load.image('ball2', '../images/pokeball_lives.png', 40, 40);
     game.load.image('paddle', '../images/platform.png')
     game.load.image('brick', '../images/haunter.png');
 }
@@ -87,9 +87,7 @@ function create() {
 
 // FADER
 function fadePicture() {
-
     game.add.tween(paddle).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-
 }
 
 function update() {
@@ -152,6 +150,7 @@ function ballHitBrick(ball, brick) {
         //LAST POKEMON ANIMATION
         // $(brick).animate({width: 400px, height:400px}, 1000);        
         // $(brick).animate({width: 200px, height:200px}, 1000);
+        // brick.tint = red;
         scoreText.setText('High Score: 21', 40, 40);
         if (parseInt(time_var) > game.time.totalElapsedSeconds()) {  
             Cookies.set("fastest_time_cookie", game.time.totalElapsedSeconds())

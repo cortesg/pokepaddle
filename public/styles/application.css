@@ -32,12 +32,18 @@ body {
    text-align: center
 }
 
+nav {
+   margin-bottom: 10px;
+}
+
 a {
+   /*float: left;*/
+   font-size: 24px;
    text-align: left;
+   margin: 40px;
    color: white;
    font-style: helvetica;
    text-decoration: none;
-   border: 1px solid black
 }
 
 a:hover {

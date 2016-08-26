@@ -27,8 +27,8 @@ function preload() {
 
     //LOADING IMAGES
     game.load.image('background', '../images/johto.png');
-    game.load.image('ball', '../images/pokeballS.png', 50, 50);
-    game.load.image('ball2', '../images/pokeballS_opt.png', 40, 40);
+    game.load.image('ball', '../images/pokeball.png', 50, 50);
+    game.load.image('ball2', '../images/pokeball_lives.png', 40, 40);
     game.load.image('paddle', '../images/platform.png')
     game.load.image('brick', '../images/pikachu.png');
 }
