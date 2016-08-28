@@ -83,7 +83,7 @@ a:hover {
    color: white;
    font-size: 14px;
    background: #10bbf1;
-   max-height: 10px;
+   height: 10px;
    width: 170px;
    border: 2px solid #10bbf1;
    border-radius: 8%;
@@ -118,9 +118,12 @@ input.button.button-stripe:hover {
    border-color: white;
 }
 
+html {
+   overflow-y: scroll
+}
+
 * { 
    padding: 0; 
    margin: 0; 
-   overflow-y: scroll;
    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
 }
