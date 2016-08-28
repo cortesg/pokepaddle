@@ -135,7 +135,7 @@ function ballHitPaddle(ball, paddle) {
 }
 
 function ballHitBrick(ball, brick) {
-    $("audio")[1].play();
+    // $("audio")[1].play();
     brick.kill();
     score++;
     scoreText.setText('Pokemon Captured: '+ score);
@@ -147,10 +147,6 @@ function ballHitBrick(ball, brick) {
         }
     }
     if (count_alive == 0) {
-        //LAST POKEMON ANIMATION
-        // $(brick).animate({width: 400px, height:400px}, 1000);        
-        // $(brick).animate({width: 200px, height:200px}, 1000);
-        // brick.tint = red;
         scoreText.setText('High Score: 21', 40, 40);
         if (parseInt(time_var) > game.time.totalElapsedSeconds()) {  
             Cookies.set("fastest_time_cookie", game.time.totalElapsedSeconds())
