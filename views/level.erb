@@ -8,8 +8,8 @@
     <script src="javascripts/cookies.js"></script>
     <script src="javascripts/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="javascripts/phaser.min.js"></script>
-    <script type="text/javascript" src="javascripts/game.js"></script>
     <script type="text/javascript" src="javascripts/modal.js"></script>
+    <script type="text/javascript" src="javascripts/game.js"></script>
   </head>
 <!--     <audio src="sounds/pokemon.mp3" autoplay loop></audio>
     <audio src="sounds/pika.mp3"></audio>  -->
@@ -24,6 +24,13 @@
     <!-- phaser will create the canvas and place it here for us -->
     <!-- this logo is actually the only thing I am adding to the body using HTML or CSS -->
     <img src="images/ginoLogo.png" class="picture logo">
+    <!-- modal -->
+    <div class="backdrop"></div>
+    <div class="modal">
+      <div class="close">x</div>
+      <p id="win_statement">You are a Pokémon Master, congrats!</p>
+      <img src="images/pikachu.gif" id="pika_gif">
+    </div>
   </body>
     <script type="text/javascript" src="javascripts/highscore.js"></script>
 </html>

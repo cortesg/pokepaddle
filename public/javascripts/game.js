@@ -100,8 +100,8 @@ function initBricks() {
         width: 50,
         height: 20,
         count: {
-            row: 7,
-            col: 3
+            row: 1,
+            col: 1
         },
         offset: {
             top: 58,
@@ -139,14 +139,14 @@ function ballHitBrick(ball, brick) {
             count_alive++;
         }
     }
+    
     if (count_alive == 0) {
         scoreText.setText('High Score: 21', 40, 40);
         if (parseInt(time_var) > game.time.totalElapsedSeconds()) {  
             Cookies.set("fastest_time_cookie", game.time.totalElapsedSeconds())
             $("#high_score").html("Fastest time: " + Math.round10(game.time.totalElapsedSeconds(), -2))
         }
-    alert('You are a Pokemon Master, congrats! Your completion time is ' + Math.round10(game.time.totalElapsedSeconds(), -2) + ' seconds.'); 
-    location.reload();    
+    create_modal()
     }
 }
 

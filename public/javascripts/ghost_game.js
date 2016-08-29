@@ -152,19 +152,7 @@ function ballHitBrick(ball, brick) {
             Cookies.set("fastest_time_cookie", game.time.totalElapsedSeconds())
             $("#high_score").html("Fastest time: " + Math.round10(game.time.totalElapsedSeconds(), -2))
         }
-    $('.modal').ready(function(){
-        create_modal()
-    })
-    $('.close').click(function(){
-        close_box()
-    })
-    $('.modal').click(function(){
-        close_box()
-    })
-    $('.backdrop').click(function(){
-        close_box()
-    })    
-    location.reload();
+    create_modal();
     }
 }
 
