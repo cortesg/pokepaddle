@@ -100,8 +100,8 @@ function initBricks() {
         width: 50,
         height: 20,
         count: {
-            row: 1,
-            col: 1
+            row: 7,
+            col: 3
         },
         offset: {
             top: 58,
