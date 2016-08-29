@@ -1,3 +1,16 @@
-HighScores
+<link rel="stylesheet" type="text/css" href="styles/main.css">
+
+<img class="background" src="images/fire.gif">
+
+<div id="highscore_wrapper">
+<h1>Best Times</h1>
+<% @users.each do |u| %>
+	<div id="highscore_posts">
+    <!-- 	<div id="highscore_name"> --><%= u.name %> <%= u.time %>s
+    </div>
+<% end %>
+</div>
+
+<p>Your Fastest Time: <%= @time %></p> 
 
 <a href="/game">Click here to play the game</a>

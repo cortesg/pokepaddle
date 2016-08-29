@@ -1,0 +1,128 @@
+* {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-shadow: 1px 1px gray;
+}
+
+body {
+    height: 100%;
+    font: 16px/28px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #222222;
+    -webkit-font-smoothing: antialiased;
+    -webkit-backface-visibility: hidden;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+.background {
+    margin: 0;
+    opacity: 0.9;
+    height: 105%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.wrap {
+    margin: 0 auto;
+    padding: 0 15px;
+    max-width: 1140px;
+    font: 24px/36px "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ul {
+    height: 320px;
+    overflow-y: scroll;
+}
+
+span {
+    font-weight: 200
+}
+
+#highscore_wrapper {
+    float: right;
+    background: rgba(114,109,109, 0.98);
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid black;
+    height: 500px;
+    width: 40%;
+    margin-left: 100px;
+    overflow-y: scroll;
+}
+
+#pokepaddle {
+    margin-top: 200px;
+    height: 300px;
+    width: 400px;
+    opacity: 0.8;
+}
+
+/* scroll bar */
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+/*------------ button css */
+
+.button {
+    color: white;
+    background: #10bbf1;
+    height: 58px;
+    border: 2px solid #10bbf1;
+    padding: 0 21px;
+    border-radius: 8%;
+}
+
+.button:hover {
+    background: #40c9f4;
+    border-color: #40c9f4;
+}
+
+a.button {
+    text-decoration: none;
+    display: inline-block;
+    line-height: 54px;
+    color: white;
+}
+
+a.button:hover {
+    color: white
+}
+
+a.button.button-stripe {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-color: white;
+}
+
+a.button.button-stripe:hover {
+    color: #222222;
+    background-color: white;
+    border-color: white;
+}
+
+.buttons_wrapper {
+    padding-top: 20px
+}
+
+.buttons_wrapper .button-stripe {
+    margin-left: 14px
+}

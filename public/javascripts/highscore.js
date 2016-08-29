@@ -16,14 +16,13 @@ function decimalAdjust(type, value, exp) {
         // Shift back
         value = value.toString().split('e');
         return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
-    }  
-
+        }  
         // Decimal round
         if (!Math.round10) {
             Math.round10 = function(value, exp) {
             return decimalAdjust('round', value, exp);
         };
-    };
+};
 
 //getting the value of each cookie and assigning them to variables
 var person_var = Cookies.get("name_cookie")
@@ -32,6 +31,11 @@ var time_var = Cookies.get("fastest_time_cookie");
 
 //for first-time users; if the cookies don't exist, your high score is 0 and your fastest time is an arbitrary high number
 if (person_var == null && score_var == null && time_var == null) {
+    // will work on modal below in future
+    // $('.backdrop, .modal').animate({'opacity':'.70'}, 200)
+    // $('.modal').animate({'opacity':'1'}, 300)
+    // $('.backdrop, .modal').css('display', 'inline-block')
+    // var person = $("#name").val();
     var person = prompt("Please enter your first name", "Ash");
     Cookies.set("person_cookie", person)
     Cookies.set("score_cookie", "0");

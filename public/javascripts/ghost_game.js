@@ -10,7 +10,7 @@ var startButton;
 var scoreText;
 var score = 0;
 var highscore = 0;
-var lives = 3;
+var lives = 9;
 var livesText;
 var lifeLostText;
 var time_var = Cookies.get("fastest_time_cookie");
@@ -30,20 +30,20 @@ function preload() {
     game.load.image('ball', '../images/pokeball.png', 50, 50);
     game.load.image('ball2', '../images/pokeball_lives.png', 40, 40);
     game.load.image('paddle', '../images/platform.png')
-    game.load.image('brick', '../images/pikachu.png');
+    game.load.image('brick', '../images/haunter.png');
 }
 
 function create() {
     //ADDING BASIC MOVEMENT
-	game.physics.startSystem(Phaser.Physics.ARCADE);
+    game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //BACKGROUND IMAGING
     var background = game.add.image(0, 0, 'background');
-    background.scale.x = game.rnd.realInRange(1, 1);
+    background.scale.x = game.rnd.realInRange(1, 1 );
     background.scale.y = game.rnd.realInRange(1, 1);
 
     //NO SOUTH BOUNDARY
-	game.physics.arcade.checkCollision.down = false;
+    game.physics.arcade.checkCollision.down = false;
 
     //ADDING BALL IMAGES
     ball = game.add.sprite(game.world.width*0.5, game.world.height-55, 'ball');
@@ -64,7 +64,7 @@ function create() {
     paddle.body.collideWorldBounds = true;
     paddle.checkWorldBounds = true;
     paddle.body.immovable = true; //initialize no movement on start
-	
+    
     initBricks(); //create the bricks
 
     //ALLOW USING COMPUTER KEYBOARD
@@ -81,17 +81,24 @@ function create() {
     lifeLostText.anchor.set(0.5);
     lifeLostText.visible = false;
 
+    //TIMER
+    game.time.events.add(Phaser.Timer.SECOND * 4, fadePicture);
+}
+
+// FADER
+function fadePicture() {
+    game.add.tween(paddle).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
 }
 
 function update() {
-	game.physics.arcade.collide(ball, paddle, ballHitPaddle);
-	game.physics.arcade.collide(ball, bricks, ballHitBrick);
-	if(playing) {
-	    if(cursors.left.isDown){
-	        paddle.body.velocity.x = -400;
-	    } else if(cursors.right.isDown){
-	    	paddle.body.velocity.x = 400;
-	    }
+    game.physics.arcade.collide(ball, paddle, ballHitPaddle);
+    game.physics.arcade.collide(ball, bricks, ballHitBrick);
+    if(playing) {
+        if(cursors.left.isDown){
+            paddle.body.velocity.x = -400;
+        } else if(cursors.right.isDown){
+            paddle.body.velocity.x = 400;
+        }
     }
 }
 
@@ -129,7 +136,7 @@ function ballHitPaddle(ball, paddle) {
 
 function ballHitBrick(ball, brick) {
     // $("audio")[1].play();
-	brick.kill();
+    brick.kill();
     score++;
     scoreText.setText('Pokemon Captured: '+ score);
 
@@ -139,14 +146,13 @@ function ballHitBrick(ball, brick) {
             count_alive++;
         }
     }
-    
     if (count_alive == 0) {
         scoreText.setText('High Score: 21', 40, 40);
         if (parseInt(time_var) > game.time.totalElapsedSeconds()) {  
             Cookies.set("fastest_time_cookie", game.time.totalElapsedSeconds())
             $("#high_score").html("Fastest time: " + Math.round10(game.time.totalElapsedSeconds(), -2))
         }
-    create_modal()
+    create_modal();
     }
 }
 
@@ -157,7 +163,7 @@ function startGame() {
             ball.body.velocity.set(200, -200);
             playing = true;
         }
-	})
+    })
 }
 
 function ballLeaveScreen() {
@@ -167,7 +173,7 @@ function ballLeaveScreen() {
         lifeLostText.visible = true;
         ball.reset(game.world.width*0.5, game.world.height-55);
         cursors.up.onDown.addOnce(function(){
-            playing=true;
+            playing = true;
             lifeLostText.visible = false;
             ball.body.velocity.set(200, -200);
         }, this);

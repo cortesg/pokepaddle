@@ -2,23 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>PokéPaddle</title>
+    <title>PokéPaddle - Ghost</title>
     <link rel="shortcut icon" href='../images/pokeball3.png'>
     <link rel="stylesheet" type="text/css" href="styles/application.css">
     <script src="javascripts/cookies.js"></script>
     <script src="javascripts/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="javascripts/phaser.min.js"></script>
+    <script type="text/javascript" src="javascripts/ghost_game.js"></script>
     <script type="text/javascript" src="javascripts/modal.js"></script>
-    <script type="text/javascript" src="javascripts/game.js"></script>
   </head>
-<!--     <audio src="sounds/pokemon.mp3" autoplay loop></audio>
-    <audio src="sounds/pika.mp3"></audio>  -->
-  <body>
+<!--     <audio src="sounds/lavender.mp3" autoplay loop></audio>
+    <audio src="sounds/haunter.mp3"></audio>   -->
+  <body id="ghost_body">
       <nav>
-        <a href="/">Home</a><a href="/ghost">Ghost Mode</a>
+        <a href="/">Home</a><a href="/game">Main Game</a>
       </nav>
-      <form method="post" action="/game">
-        <p id="high_score"></p>
+      <form method="post" action="/ghost">
+        <p id="high_score" class="ghost_score"></p>
         <input type="submit" value="Submit your best time!" class="button">
       </form>
     <!-- phaser will create the canvas and place it here for us -->

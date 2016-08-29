@@ -1,10 +1,33 @@
-Welcome to PokePaddle!
-
-Press up to throw Pokeball.
-Press left to move paddle left and right to move paddle right.
-Catch all Pokemon to win!
-
-Your score will be saved when you come back!
-
-<a href="/game">Click here to play the game</a>
-<a href="/highscore">Fastest Times</a>
+<!DOCTYPE HTML>
+    <html>
+    <head>
+    	<title>PokéPaddle - Welcome</title>
+    	<link rel="shortcut icon" href='../images/pokeball3.png'>
+        <link rel="stylesheet" href="styles/main.css">
+    </head>
+    <body>
+        <div class="wrap">
+            <div id="highscore_wrapper">
+    			<h1>Best Times</h1>
+    			<% @users.each do |u| %>
+                    <div id="highscore_posts"><%= u.name %>: <%= u.time %>s</div>
+                <% end %>
+            </div>
+            <div>
+                <h1>Welcome to <span>PokéPaddle</span></h1>
+                <ul>
+                    <li>Press <strong>UP ARROW</strong> to throw the Pokéball!</li><br>
+                    <li>Press <strong>LEFT ARROW</strong> to move the PokéPaddle left and <strong>RIGHT ARROW</strong> to move the PokéPaddle right.</li><br>
+                    <li><strong>Catch all Pokémon to <i>win!</i></strong> Your high score will be saved when you come back!</li><br>
+                    <li><strong>Submit your best time</strong> if you complete the game.</li><br>
+                    <li><strong>Ghost type mode</strong> provides an extra challenge for players by making the PokéPaddle <strong>disappear</strong>.</li><br>
+                </ul>
+                <div class="buttons_wrapper">
+                    <a href="/game" class="button">Play the Game!</a>
+                    <a href="/ghost" class="button button-stripe">Ghost Type Mode</a>
+                </div>
+            </div>
+        </div>
+        <img class="background" src="images/pikachuBG.jpg">
+    </body>
+</html>
