@@ -32,21 +32,21 @@ var time_var = Cookies.get("fastest_time_cookie");
 //for first-time users; if the cookies don't exist, your high score is 0 and your fastest time is an arbitrary high number
 if (person_var == null && score_var == null && time_var == null) {
     $(document).ready(function(){
-    $('.lightbox').ready(function(){
-        $('.backdrop, .lbox').animate({'opacity':'.70'}, 200)
-            $('.lbox').animate({'opacity':'1'}, 300)
-            $('.backdrop, .lbox').css('display', 'inline-block')
+        $('.lightbox').ready(function(){
+            $('.backdrop, .lbox').animate({'opacity':'.70'}, 200)
+                $('.lbox').animate({'opacity':'1'}, 300)
+                $('.backdrop, .lbox').css('display', 'inline-block')
+        })
+        $('.close').click(function(){
+            close_box()
+        })
+        $('.lbox').click(function(){
+            close_box()
+        })
+        $('.backdrop').click(function(){
+            close_box()
+        })
     })
-    $('.close').click(function(){
-        close_box()
-    })
-    $('.lbox').click(function(){
-        close_box()
-    })
-    $('.backdrop').click(function(){
-        close_box()
-    })
-})
     // var person = prompt("Please enter your first name", "Ash");
     // Cookies.set("person_cookie", person)
     // Cookies.set("score_cookie", "0");

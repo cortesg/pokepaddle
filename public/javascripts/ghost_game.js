@@ -107,8 +107,8 @@ function initBricks() {
         width: 50,
         height: 20,
         count: {
-            row: 7,
-            col: 3
+            row: 1,
+            col: 1
         },
         offset: {
             top: 58,
@@ -152,7 +152,22 @@ function ballHitBrick(ball, brick) {
             Cookies.set("fastest_time_cookie", game.time.totalElapsedSeconds())
             $("#high_score").html("Fastest time: " + Math.round10(game.time.totalElapsedSeconds(), -2))
         }
-    alert('You are a Pokemon Master, congrats! Your completion time is ' + Math.round10(game.time.totalElapsedSeconds(), -2) + ' seconds.'); 
+    $(document).ready(function(){
+        $('.lightbox').ready(function(){
+            $('.backdrop, .lbox').animate({'opacity':'.70'}, 200)
+                $('.lbox').animate({'opacity':'1'}, 300)
+                $('.backdrop, .lbox').css('display', 'inline-block')
+        })
+        $('.close').click(function(){
+            close_box()
+        })
+        $('.lbox').click(function(){
+            close_box()
+        })
+        $('.backdrop').click(function(){
+            close_box()
+        })
+    })    
     location.reload();
     }
 }
