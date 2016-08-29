@@ -53,6 +53,11 @@ a {
 a:hover {
    color: lightblue;
 }
+
+#pika {
+    height: 250px;
+}
+
 .picture {
    z-index: 1;
    display: block;
@@ -128,7 +133,8 @@ input.button.button-stripe:hover {
     opacity: 0;
     display: none;
 }
-.lbox {
+
+.modal {
     position: absolute;
     top: 20%;
     left: 30%;
@@ -140,12 +146,6 @@ input.button.button-stripe:hover {
     border-style: solid;
     border-width: 10px;
     border-color: black;
-}
-.close {
-    float:right;
-    margin-right:5px;
-    cursor:pointer;
-    color: red;
 }
 
 html {
