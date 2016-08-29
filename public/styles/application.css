@@ -118,7 +118,7 @@ input.button.button-stripe:hover {
 
 /* modal css */
 
-/*.backdrop {
+.backdrop {
     position:absolute;
     top:0px;
     left:0px;
@@ -146,7 +146,7 @@ input.button.button-stripe:hover {
     margin-right:5px;
     cursor:pointer;
     color: red;
-}*/
+}
 
 html {
    overflow-y: scroll
