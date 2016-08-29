@@ -128,7 +128,7 @@ function ballHitPaddle(ball, paddle) {
 }
 
 function ballHitBrick(ball, brick) {
-    // $("audio")[1].play();
+    $("audio")[1].play();
 	brick.kill();
     score++;
     scoreText.setText('Pokemon Captured: '+ score);
