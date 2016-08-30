@@ -133,6 +133,20 @@ input.button.button-stripe:hover {
     border-color: black;
 }
 
+.lose_modal {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width: 500px;
+    height: 300px;
+    background: yellow;
+    z-index: 1;
+    display:none;
+    border-style: solid;
+    border-width: 10px;
+    border-color: black;
+}
+
 .backdrop {
     position:absolute;
     top: 0px;
@@ -154,8 +168,13 @@ input.button.button-stripe:hover {
     margin-top: 10px;
 }
 
-#pika_gif {
+.pika_gif {
     height: 250px;
+}
+
+.sad_gif {
+    margin-top: 16px;
+    height: 200px;
 }
 
 html {

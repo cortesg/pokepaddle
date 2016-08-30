@@ -16,10 +16,6 @@ var lifeLostText;
 var time_var = Cookies.get("fastest_time_cookie");
 var score_var = Cookies.get("score_cookie");
 
-function reload() {
-    location.reload();
-}
-
 function preload() {    
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.pageAlignHorizontally = true;
@@ -81,6 +77,8 @@ function create() {
     lifeLostText.anchor.set(0.5);
     lifeLostText.visible = false;
 
+// ONLY DIFFERENCE BETWEEN MAIN AND GHOST MODES ARE BELOW
+
     //TIMER
     game.time.events.add(Phaser.Timer.SECOND * 4, fadePicture);
 }
@@ -89,6 +87,8 @@ function create() {
 function fadePicture() {
     game.add.tween(paddle).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
 }
+
+// ONLY DIFFERENCE BETWEEN MAIN AND GHOST MODES ARE ABOVE
 
 function update() {
     game.physics.arcade.collide(ball, paddle, ballHitPaddle);
@@ -183,8 +183,7 @@ function ballLeaveScreen() {
             Cookies.set("score_cookie", score)
             $("#high_score").html("High Score: " + score)
         }
-        alert('No more Pokeballs, game over!');
-        location.reload();
+    create_lose_modal()
     }
 }
 

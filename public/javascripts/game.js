@@ -16,10 +16,6 @@ var lifeLostText;
 var time_var = Cookies.get("fastest_time_cookie");
 var score_var = Cookies.get("score_cookie");
 
-function reload() {
-    location.reload();
-}
-
 function preload() {    
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.pageAlignHorizontally = true;
@@ -177,8 +173,7 @@ function ballLeaveScreen() {
             Cookies.set("score_cookie", score)
             $("#high_score").html("High Score: " + score)
         }
-        alert('No more Pokeballs, game over!');
-        location.reload();
+    create_lose_modal()
     }
 }
 

@@ -36,12 +36,14 @@ if (person_var == null && score_var == null && time_var == null) {
     // $('.modal').animate({'opacity':'1'}, 300)
     // $('.backdrop, .modal').css('display', 'inline-block')
     // var person = $("#name").val();
-    var person = prompt("Please enter your first name", "Ash");
-    Cookies.set("person_cookie", person)
-    Cookies.set("score_cookie", "0");
-    Cookies.set("fastest_time_cookie", "99999");
-    $("#high_score").html("High Score: 0")
-    location.reload()
+    var person = prompt("Please enter your first name");
+    if (person != null) {
+        Cookies.set("person_cookie", person)
+        Cookies.set("score_cookie", "0");
+        Cookies.set("fastest_time_cookie", "99999");
+        $("#high_score").html("High Score: 0")
+        location.reload()
+    }
 } else if (time_var == "99999") {
     $("#high_score").html("High Score: " + score_var)
 } else {

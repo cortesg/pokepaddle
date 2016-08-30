@@ -19,17 +19,25 @@
       </nav>
       <form method="post" action="/game">
         <p id="high_score"></p>
-        <input type="submit" value="Submit your best time!" class="button">
+        <% if cookies[:person_cookie] != nil %>
+          <% if cookies[:fastest_time_cookie] != "99999" %>
+            <input type="submit" value="Submit your best time!" class="button">
+          <% end %>
+        <% end %>
       </form>
     <!-- phaser will create the canvas and place it here for us -->
-    <!-- this logo is actually the only thing I am adding to the body using HTML or CSS -->
     <img src="images/ginoLogo.png" class="picture logo">
-    <!-- modal -->
+    <!-- modal below -->
     <div class="backdrop"></div>
     <div class="modal">
       <div class="close">x</div>
       <p id="win_statement">You are a Pokémon Master, congrats!</p>
-      <img src="images/pikachu.gif" id="pika_gif">
+      <img src="images/pikachu.gif" class="pika_gif">
+    </div>
+    <div class="lose_modal">
+      <div class="close">x</div>
+      <p id="win_statement">No more Pokéballs, game over!</p>
+      <img src="images/sad.gif" class="sad_gif">
     </div>
   </body>
     <script type="text/javascript" src="javascripts/highscore.js"></script>
