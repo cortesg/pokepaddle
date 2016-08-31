@@ -47,7 +47,7 @@ a {
    margin: 40px;
    color: white;
    font-style: helvetica;
-   text-decoration: none;
+   text-decoration: none !important;
 }
 
 a:hover {
