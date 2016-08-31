@@ -124,7 +124,7 @@ input.button.button-stripe:hover {
     top: 20%;
     left: 30%;
     width: 500px;
-    height: 300px;
+    height: 320px;
     background: yellow;
     z-index: 1;
     display:none;
@@ -170,10 +170,10 @@ input.button.button-stripe:hover {
 
 .pika_gif {
     height: 250px;
+    margin-bottom: 200px
 }
 
 .sad_gif {
-    margin-top: 16px;
     height: 200px;
 }
 
