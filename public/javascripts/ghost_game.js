@@ -69,7 +69,7 @@ function create() {
 
     //TEXT PROJECTION
     textStyle = { font: '18px Arial', fill: '#0095DD' };
-    startText = game.add.text(game.world.width*0.06, game.world.height*0.6, 'Be a Pokémon master, press UP to throw the Pokéball', { font: '18px Arial', fill: 'yellow' });
+    startText = game.add.text(game.world.width*0.06, game.world.height*0.6, 'Be a Pokémon Master, press UP to throw the Pokéball', { font: '18px Arial', fill: 'yellow' });
     scoreText = game.add.text(5, 5, 'Pokémon Captured: 0', { font: '18px Arial', fill: '#0095DD' });
     livesText = game.add.text(game.world.width-5, 5, ': '+lives, { font: '18px Arial', fill: '#0095DD' });
     livesText.anchor.set(1,0);
